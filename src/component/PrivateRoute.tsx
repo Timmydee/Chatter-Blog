@@ -9,7 +9,7 @@ const PrivateRoute = () => {
     if (checking) {
         return <h1>Loading</h1>
     }
-    return loggedIn ? <Outlet /> :  <Navigate to = "/signin" />
+    return loggedIn ? <Outlet /> :  <Navigate to = "/sign" />
 }
 
 export default PrivateRoute
