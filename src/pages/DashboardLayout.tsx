@@ -8,6 +8,7 @@ import {MdOutlineDrafts, MdOutlineAnalytics} from 'react-icons/md'
 import {IoMdNotificationsOutline} from 'react-icons/io'
 import Feed from '../FeedComponent/Feed'
 import { useNavigate } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 
 interface Props {
     children: ReactNode
@@ -15,6 +16,14 @@ interface Props {
 
 const FeedScreen : React.FC<Props> = ({children}) => {
     const navigate = useNavigate()
+    const location = useLocation()
+
+    function pathMatch(route: string) :boolean{
+        if(route === location.pathname){
+            return true
+        }
+        return false
+    }
 
   return (
     <div className={`${styles.innerWidth}`}>
@@ -26,26 +35,27 @@ const FeedScreen : React.FC<Props> = ({children}) => {
                     <div className='mt-5 w-full'>
                         <h2 className={` ${styles.pStyle} text-black`}>Overview</h2>
                         <ul className='mx-5 text-justify'>
-                            <li className='flex gap-2 items-center my-2 hover:text-blue-500'>
+                            <li className={`flex gap-2 items-center my-2 hover:text-blue-500 ${pathMatch('/feedscreen') && 'text-blue-600'}`}>
                                 <MdDynamicFeed />
                                 <Link to='/feedscreen' >Feeds</Link>
                             </li>
-                            <li className='flex gap-2 items-center my-2 hover:text-blue-500'>
+                            <li className={`flex gap-2 items-center my-2 hover:text-blue-500 ${pathMatch('/bookmark') && 'text-blue-600'}`}>
                                 <BsBookmarks />
                                 <Link to='/bookmark' >Bookmarks</Link>
                             </li>
-                            <li className='flex gap-2 items-center my-2 hover:text-blue-500'>
+                            <li className={`flex gap-2 items-center my-2 hover:text-blue-500 ${pathMatch('/teamblog') && 'text-blue-600'}`}>
                                 <SlPeople />
                                 <Link to='/teamblog' >Team Blog</Link>
                             </li>
-                            <li className='flex gap-2 items-center my-2 hover:text-blue-500'>
+                            <li className={`flex gap-2 items-center my-2 hover:text-blue-500 ${pathMatch('/drafts') && 'text-blue-600'}`}>
                                 <MdOutlineDrafts />
                                 <Link to='/drafts' >Drafts</Link>
                             </li>
-                            <li className='flex gap-2 items-center my-2 hover:text-blue-500'>
+                            <li className={`flex gap-2 items-center my-2 hover:text-blue-500 ${pathMatch('/analytics') && 'text-blue-600'}`}>
                                 <MdOutlineAnalytics />
                                 <Link to='/analytics' >Analytics</Link>
                             </li>
+                            
                         </ul>
                     </div>
 
@@ -76,9 +86,9 @@ const FeedScreen : React.FC<Props> = ({children}) => {
                     <div className='mt-5 w-full'>
                         <h2 className={` ${styles.pStyle} text-black`}>Personal</h2>
                         <ul className='mx-5 text-justify'>
-                            <li className='flex gap-2 items-center my-2 hover:text-blue-500'>
+                            <li className={`flex gap-2 items-center my-2 hover:text-blue-500 ${pathMatch('/profile') && 'text-blue-600'}`}>
                                 <SlPeople />
-                                <Link to='' >Account</Link>
+                                <Link to='/profile' >Account</Link>
                             </li>
                             <li className='flex gap-2 items-center my-2 hover:text-blue-500'>
                                 <IoMdNotificationsOutline />

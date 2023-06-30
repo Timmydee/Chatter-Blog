@@ -64,11 +64,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/feedscreen",
-        element: (
-          <PrivateRoute>
-            <Feed />
-          </PrivateRoute>
-        ),
+        element: <Feed />
+          // <PrivateRoute>
+          //   <Feed />
+          // </PrivateRoute>
+        ,
       },
       {
         path: "/bookmark",
